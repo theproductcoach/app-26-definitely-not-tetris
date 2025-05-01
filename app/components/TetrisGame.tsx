@@ -442,17 +442,19 @@ export default function TetrisGame({ mode }: { mode: "classic" | "zetris" }) {
             </button>
           </div>
         )}
-        <NextPiece piece={gameState.nextPiece} />
-        <GameControls
-          onMove={(direction) => {
-            if (direction === "down") {
-              moveDown();
-            } else {
-              movePiece(direction);
-            }
-          }}
-          onRotate={rotatePiece}
-        />
+        <div className={styles.sidePanel}>
+          <NextPiece piece={gameState.nextPiece} />
+          <GameControls
+            onMove={(direction) => {
+              if (direction === "down") {
+                moveDown();
+              } else {
+                movePiece(direction);
+              }
+            }}
+            onRotate={rotatePiece}
+          />
+        </div>
       </div>
     </div>
   );
