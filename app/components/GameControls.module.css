@@ -43,20 +43,20 @@
 
 .buttonRow {
     display: flex;
-    gap: 1rem;
+    gap: 0.5rem;
     justify-content: center;
     align-items: center;
 }
 
 .controlButton {
-    width: 60px;
-    height: 60px;
+    width: 50px;
+        height: 50px;
     border: none;
     border-radius: 50%;
     background-color: rgba(0, 255, 255, 0.2);
     border: 3px solid #00ffff;
     color: #00ffff;
-    font-size: 1.5rem;
+    font-size: 1.2rem;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -87,13 +87,37 @@
     box-shadow:
         0 0 5px #ff00ff,
         inset 0 0 5px #ff00ff;
-    margin-left: 1rem;
+    margin-left: 0.5rem;
 }
 
 .rotateButton:active {
     background-color: rgba(255, 0, 255, 0.4);
 }
 
+.hardDropButton {
+    background-color: rgba(255, 0, 0, 0.2);
+    border-color: #ff0000;
+    color: #ff0000;
+    text-shadow:
+        0 0 5px #ff0000,
+        0 0 10px #ff0000;
+    box-shadow:
+        0 0 5px #ff0000,
+        inset 0 0 5px #ff0000;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    font-size: 1.2rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-left: 0.5rem;
+}
+
+.hardDropButton:active {
+    background-color: rgba(255, 0, 0, 0.4);
+    transform: scale(0.9);
+}
 @media (max-width: 768px) {
     .instructions {
         display: none;
@@ -108,4 +132,9 @@
         height: 50px;
         font-size: 1.2rem;
     }
+.hardDropButton {
+    width: 70px;
+    height: 40px;
+    font-size: 1rem;
+}
 }

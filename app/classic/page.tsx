@@ -1,11 +1,9 @@
 import TetrisGame from "../components/TetrisGame";
 import RetroLayout from "../components/RetroLayout";
-import HomeLink from "../components/HomeLink";
 
 export default function ClassicMode() {
   return (
-    <RetroLayout>
-      <HomeLink />
+    <RetroLayout mode="classic">
       <TetrisGame mode="classic" />
     </RetroLayout>
   );

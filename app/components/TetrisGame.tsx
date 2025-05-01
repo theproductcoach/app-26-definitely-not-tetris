@@ -294,10 +294,46 @@ export default function TetrisGame({ mode }: { mode: "classic" | "zetris" }) {
     });
   };
 
+  const hardDrop = () => {
+    if (!gameState.currentPiece || gameState.gameOver || !gameState.isPlaying)
+      return;
+
+    // Calculate how far the piece can drop
+    let dropDistance = 0;
+    while (
+      !checkCollision(
+        gameState.currentPiece,
+        gameState.board,
+        0,
+        dropDistance + 1
+      )
+    ) {
+      dropDistance++;
+    }
+
+    // Move the piece down by the calculated distance
+    setGameState((prev) => {
+      if (!prev.currentPiece) return prev;
+      return {
+        ...prev,
+        currentPiece: {
+          ...prev.currentPiece,
+          position: {
+            ...prev.currentPiece.position,
+            y: prev.currentPiece.position.y + dropDistance,
+          },
+        },
+      };
+    });
+
+    // One final move to lock the piece
+    moveDown();
+  };
+
   // Game loop
   useEffect(() => {
     if (gameState.isPlaying && !gameState.gameOver) {
-      const speed = Math.max(100, 1000 - (gameState.level - 1) * 100);
+      const speed = Math.max(100, 350 - (gameState.level - 1) * 300);
       const gameLoop = setInterval(moveDown, speed);
       return () => clearInterval(gameLoop);
     }
@@ -329,13 +365,7 @@ export default function TetrisGame({ mode }: { mode: "classic" | "zetris" }) {
           rotatePiece();
           break;
         case " ": // Space - Hard drop
-          while (
-            gameState.currentPiece &&
-            !checkCollision(gameState.currentPiece, gameState.board, 0, 1)
-          ) {
-            moveDown();
-          }
-          moveDown(); // Lock the piece
+          hardDrop();
           break;
       }
     };
@@ -406,18 +436,23 @@ export default function TetrisGame({ mode }: { mode: "classic" | "zetris" }) {
 
   return (
     <div className={styles.gameContainer}>
-      <div className={styles.gameInfo}>
-        <div className={styles.infoItem}>
-          <span className={styles.infoLabel}>SCORE</span>
-          <span className={styles.infoValue}>{gameState.score}</span>
+      <div className={styles.headerArea}>
+        <div className={styles.gameInfo}>
+          <div className={styles.infoItem}>
+            <span className={styles.infoLabel}>SCORE</span>
+            <span className={styles.infoValue}>{gameState.score}</span>
+          </div>
+          <div className={styles.infoItem}>
+            <span className={styles.infoLabel}>LEVEL</span>
+            <span className={styles.infoValue}>{gameState.level}</span>
+          </div>
+          <div className={styles.infoItem}>
+            <span className={styles.infoLabel}>LINES</span>
+            <span className={styles.infoValue}>{gameState.lines}</span>
+          </div>
         </div>
-        <div className={styles.infoItem}>
-          <span className={styles.infoLabel}>LEVEL</span>
-          <span className={styles.infoValue}>{gameState.level}</span>
-        </div>
-        <div className={styles.infoItem}>
-          <span className={styles.infoLabel}>LINES</span>
-          <span className={styles.infoValue}>{gameState.lines}</span>
+        <div className={styles.mobileNextPiece}>
+          <NextPiece piece={gameState.nextPiece} />
         </div>
       </div>
 
@@ -443,7 +478,9 @@ export default function TetrisGame({ mode }: { mode: "classic" | "zetris" }) {
           </div>
         )}
         <div className={styles.sidePanel}>
-          <NextPiece piece={gameState.nextPiece} />
+          <div className={styles.desktopNextPiece}>
+            <NextPiece piece={gameState.nextPiece} />
+          </div>
           <GameControls
             onMove={(direction) => {
               if (direction === "down") {
@@ -453,6 +490,7 @@ export default function TetrisGame({ mode }: { mode: "classic" | "zetris" }) {
               }
             }}
             onRotate={rotatePiece}
+            onHardDrop={hardDrop}
           />
         </div>
       </div>

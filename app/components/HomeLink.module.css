@@ -1,7 +1,6 @@
 .homeLink {
     display: block;
-        width: fit-content;
-        margin: 1rem auto;
+    width: fit-content;
     font-family: 'Press Start 2P', cursive;
     font-size: 0.8rem;
     color: #00ffff;
@@ -17,6 +16,8 @@
     box-shadow:
         0 0 5px #00ffff,
         inset 0 0 5px #00ffff;
+    position: absolute;
+    left: 0;
 }
 
 .homeLink:hover {
@@ -34,5 +35,6 @@
     .homeLink {
         font-size: 0.6rem;
         padding: 0.4rem 0.8rem;
+        position: static;
     }
 }

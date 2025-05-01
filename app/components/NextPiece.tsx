@@ -10,15 +10,15 @@ interface NextPieceProps {
   } | null;
 }
 
-const PREVIEW_SIZE = 4; // Size of the preview area
-const BLOCK_SIZE = 20; // Size of each block in the preview
+const PREVIEW_SIZE = 4;
+const BLOCK_SIZE = 15;
 
 export default function NextPiece({ piece }: NextPieceProps) {
   const canvasRef = useRef<HTMLCanvasElement>(null);
 
   useEffect(() => {
     const canvas = canvasRef.current;
-    if (!canvas || !piece) return;
+    if (!canvas) return;
 
     const ctx = canvas.getContext("2d");
     if (!ctx) return;
@@ -27,18 +27,24 @@ export default function NextPiece({ piece }: NextPieceProps) {
     ctx.fillStyle = "#000";
     ctx.fillRect(0, 0, canvas.width, canvas.height);
 
-    // Center the piece in the preview
-    const offsetX = Math.floor((PREVIEW_SIZE - piece.shape[0].length) / 2);
-    const offsetY = Math.floor((PREVIEW_SIZE - piece.shape.length) / 2);
+    if (!piece) return;
 
-    // Draw the piece
+    // Calculate piece dimensions
+    const pieceWidth = piece.shape[0].length * BLOCK_SIZE;
+    const pieceHeight = piece.shape.length * BLOCK_SIZE;
+
+    // Calculate center position
+    const centerX = (canvas.width - pieceWidth) / 2;
+    const centerY = (canvas.height - pieceHeight) / 2;
+
+    // Draw the piece centered
     ctx.fillStyle = "#00ffff";
     piece.shape.forEach((row, y) => {
       row.forEach((value, x) => {
         if (value) {
           ctx.fillRect(
-            (x + offsetX) * BLOCK_SIZE,
-            (y + offsetY) * BLOCK_SIZE,
+            centerX + x * BLOCK_SIZE,
+            centerY + y * BLOCK_SIZE,
             BLOCK_SIZE - 1,
             BLOCK_SIZE - 1
           );
@@ -46,8 +52,6 @@ export default function NextPiece({ piece }: NextPieceProps) {
       });
     });
   }, [piece]);
-
-  if (!piece) return null;
 
   return (
     <div className={styles.nextPieceContainer}>

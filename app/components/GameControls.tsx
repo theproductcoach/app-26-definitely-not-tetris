@@ -6,9 +6,14 @@ import styles from "./GameControls.module.css";
 interface GameControlsProps {
   onMove: (direction: "left" | "right" | "down") => void;
   onRotate: () => void;
+  onHardDrop: () => void;
 }
 
-export default function GameControls({ onMove, onRotate }: GameControlsProps) {
+export default function GameControls({
+  onMove,
+  onRotate,
+  onHardDrop,
+}: GameControlsProps) {
   const [isMobile, setIsMobile] = useState(false);
 
   useEffect(() => {
@@ -59,6 +64,13 @@ export default function GameControls({ onMove, onRotate }: GameControlsProps) {
           aria-label="Move Right"
         >
           →
+        </button>
+        <button
+          className={`${styles.controlButton} ${styles.hardDropButton}`}
+          onClick={onHardDrop}
+          aria-label="Hard Drop"
+        >
+          ↓↓
         </button>
         <button
           className={`${styles.controlButton} ${styles.rotateButton}`}
