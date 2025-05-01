@@ -1,0 +1,111 @@
+.instructions {
+    margin-top: 2rem;
+    padding: 1rem;
+    background-color: rgba(0, 0, 0, 0.8);
+    border: 2px solid #00ffff;
+    border-radius: 8px;
+    color: #00ffff;
+    font-family: 'Press Start 2P', cursive;
+    font-size: 0.8rem;
+}
+
+.instructions h2 {
+    margin: 0 0 1rem 0;
+    font-size: 1rem;
+    color: #ff00ff;
+    text-shadow:
+        0 0 5px #ff00ff,
+        0 0 10px #ff00ff;
+}
+
+.instructions ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.instructions li {
+    margin-bottom: 0.8rem;
+    text-shadow:
+        0 0 5px #00ffff,
+        0 0 10px #00ffff;
+}
+
+.mobileControls {
+    margin-top: 2rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+    width: 100%;
+    max-width: 300px;
+}
+
+.buttonRow {
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+    align-items: center;
+}
+
+.controlButton {
+    width: 60px;
+    height: 60px;
+    border: none;
+    border-radius: 50%;
+    background-color: rgba(0, 255, 255, 0.2);
+    border: 3px solid #00ffff;
+    color: #00ffff;
+    font-size: 1.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    text-shadow:
+        0 0 5px #00ffff,
+        0 0 10px #00ffff;
+    box-shadow:
+        0 0 5px #00ffff,
+        inset 0 0 5px #00ffff;
+    touch-action: manipulation;
+    -webkit-tap-highlight-color: transparent;
+}
+
+.controlButton:active {
+    transform: scale(0.9);
+    background-color: rgba(0, 255, 255, 0.4);
+}
+
+.rotateButton {
+    background-color: rgba(255, 0, 255, 0.2);
+    border-color: #ff00ff;
+    color: #ff00ff;
+    text-shadow:
+        0 0 5px #ff00ff,
+        0 0 10px #ff00ff;
+    box-shadow:
+        0 0 5px #ff00ff,
+        inset 0 0 5px #ff00ff;
+    margin-left: 1rem;
+}
+
+.rotateButton:active {
+    background-color: rgba(255, 0, 255, 0.4);
+}
+
+@media (max-width: 768px) {
+    .instructions {
+        display: none;
+    }
+
+    .mobileControls {
+        margin-top: 1rem;
+    }
+
+    .controlButton {
+        width: 50px;
+        height: 50px;
+        font-size: 1.2rem;
+    }
+}

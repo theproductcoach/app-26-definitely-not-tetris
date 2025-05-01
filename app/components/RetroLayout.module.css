@@ -1,0 +1,107 @@
+@import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
+
+.container {
+    min-height: 100vh;
+    color: #fff;
+    font-family: 'Press Start 2P', cursive;
+}
+
+.banner {
+    width: 100%;
+    padding: 2rem;
+    background-color: #2a0a4a;
+    text-align: center;
+    border-bottom: 4px solid #ff00ff;
+    box-shadow:
+        0 0 10px #ff00ff,
+        0 0 20px #ff00ff;
+}
+
+.title {
+    font-size: 3rem;
+    color: #ff00ff;
+    text-shadow:
+        0 0 5px #ff00ff,
+        0 0 10px #ff00ff,
+        0 0 20px #ff00ff;
+    margin: 0;
+    animation: glow 2s ease-in-out infinite alternate;
+}
+
+.modeSelector {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 2rem;
+    padding: 2rem;
+}
+
+.retroButton {
+    font-family: 'Press Start 2P', cursive;
+    font-size: 1.2rem;
+    padding: 1rem 2rem;
+    background-color: #4a0a8a;
+    color: #00ffff;
+    border: 4px solid #00ffff;
+    cursor: pointer;
+    text-transform: uppercase;
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+.retroButton:hover {
+    background-color: #00ffff;
+    color: #4a0a8a;
+    box-shadow:
+        0 0 10px #00ffff,
+        0 0 20px #00ffff;
+    transform: scale(1.05);
+}
+
+.retroButton:active {
+    transform: scale(0.95);
+}
+
+.main {
+    padding: 2rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: transparent;
+}
+
+@keyframes glow {
+    from {
+        text-shadow:
+            0 0 5px #ff00ff,
+            0 0 10px #ff00ff,
+            0 0 20px #ff00ff;
+    }
+
+    to {
+        text-shadow:
+            0 0 10px #ff00ff,
+            0 0 20px #ff00ff,
+            0 0 30px #ff00ff;
+    }
+}
+
+@media (max-width: 768px) {
+    .banner {
+        padding: 1rem;
+    }
+
+    .title {
+        font-size: 1.5rem;
+    }
+
+    .main {
+        padding: 1rem;
+    }
+
+    .retroButton {
+        font-size: 1rem;
+        padding: 0.8rem 1.6rem;
+    }
+}

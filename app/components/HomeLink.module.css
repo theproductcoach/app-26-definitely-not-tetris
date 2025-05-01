@@ -1,0 +1,39 @@
+.homeLink {
+    position: absolute;
+    top: 1rem;
+    left: 1rem;
+    font-family: 'Press Start 2P', cursive;
+    font-size: 0.8rem;
+    color: #00ffff;
+    text-decoration: none;
+    padding: 0.5rem 1rem;
+    border: 2px solid #00ffff;
+    border-radius: 4px;
+    background-color: rgba(0, 0, 0, 0.8);
+    transition: all 0.3s ease;
+    z-index: 10;
+    text-shadow:
+        0 0 5px #00ffff,
+        0 0 10px #00ffff;
+    box-shadow:
+        0 0 5px #00ffff,
+        inset 0 0 5px #00ffff;
+}
+
+.homeLink:hover {
+    color: #ff00ff;
+    border-color: #ff00ff;
+    text-shadow:
+        0 0 5px #ff00ff,
+        0 0 10px #ff00ff;
+    box-shadow:
+        0 0 5px #ff00ff,
+        inset 0 0 5px #ff00ff;
+}
+
+@media (max-width: 768px) {
+    .homeLink {
+        font-size: 0.6rem;
+        padding: 0.4rem 0.8rem;
+    }
+}
