@@ -1,13 +1,8 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState, useCallback } from "react";
 import styles from "./TetrisGame.module.css";
 import GameControls from "./GameControls";
-import {
-  TETROMINO_ASSETS,
-  BLOCK_ASSETS,
-  BACKGROUNDS,
-} from "../utils/tetrominoAssets";
 import NextPiece from "./NextPiece";
 
 const BOARD_WIDTH = 10;
@@ -146,7 +141,7 @@ export default function TetrisGame({ mode }: { mode: "classic" | "zetris" }) {
     );
   };
 
-  const moveDown = () => {
+  const moveDown = useCallback(() => {
     setGameState((prev) => {
       if (!prev.currentPiece || prev.gameOver || !prev.isPlaying) return prev;
 
@@ -230,9 +225,9 @@ export default function TetrisGame({ mode }: { mode: "classic" | "zetris" }) {
         level: Math.floor((prev.lines + linesCleared) / 10) + 1,
       };
     });
-  };
+  }, [mode]);
 
-  const movePiece = (direction: "left" | "right") => {
+  const movePiece = useCallback((direction: "left" | "right") => {
     setGameState((prev) => {
       if (!prev.currentPiece || prev.gameOver || !prev.isPlaying) return prev;
 
@@ -251,9 +246,9 @@ export default function TetrisGame({ mode }: { mode: "classic" | "zetris" }) {
       }
       return prev;
     });
-  };
+  }, []);
 
-  const rotatePiece = () => {
+  const rotatePiece = useCallback(() => {
     setGameState((prev) => {
       if (!prev.currentPiece || prev.gameOver || !prev.isPlaying) return prev;
 
@@ -277,7 +272,7 @@ export default function TetrisGame({ mode }: { mode: "classic" | "zetris" }) {
 
       return prev;
     });
-  };
+  }, []);
 
   const startGame = () => {
     const firstPiece = getRandomTetromino(mode);
@@ -294,7 +289,7 @@ export default function TetrisGame({ mode }: { mode: "classic" | "zetris" }) {
     });
   };
 
-  const hardDrop = () => {
+  const hardDrop = useCallback(() => {
     if (!gameState.currentPiece || gameState.gameOver || !gameState.isPlaying)
       return;
 
@@ -328,7 +323,13 @@ export default function TetrisGame({ mode }: { mode: "classic" | "zetris" }) {
 
     // One final move to lock the piece
     moveDown();
-  };
+  }, [
+    gameState.currentPiece,
+    gameState.gameOver,
+    gameState.isPlaying,
+    gameState.board,
+    moveDown,
+  ]);
 
   // Game loop
   useEffect(() => {
@@ -337,7 +338,7 @@ export default function TetrisGame({ mode }: { mode: "classic" | "zetris" }) {
       const gameLoop = setInterval(moveDown, speed);
       return () => clearInterval(gameLoop);
     }
-  }, [gameState.isPlaying, gameState.gameOver, gameState.level]);
+  }, [gameState.isPlaying, gameState.gameOver, gameState.level, moveDown]);
 
   // Keyboard controls
   useEffect(() => {
@@ -372,7 +373,14 @@ export default function TetrisGame({ mode }: { mode: "classic" | "zetris" }) {
 
     window.addEventListener("keydown", handleKeyPress);
     return () => window.removeEventListener("keydown", handleKeyPress);
-  }, [gameState]);
+  }, [
+    gameState.isPlaying,
+    gameState.gameOver,
+    hardDrop,
+    moveDown,
+    movePiece,
+    rotatePiece,
+  ]);
 
   // Render game
   useEffect(() => {

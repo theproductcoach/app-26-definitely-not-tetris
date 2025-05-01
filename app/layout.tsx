@@ -15,6 +15,9 @@ const geistMono = Geist_Mono({
 export const metadata: Metadata = {
   title: "Definitely Not Tetris",
   description: "A clone of Tetris..sort of",
+  icons: {
+    icon: "/favicon.png",
+  },
 };
 
 export default function RootLayout({
