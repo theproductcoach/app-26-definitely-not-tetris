@@ -1,4 +1,30 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Definitely Not Tetris
+
+A retro-styled Tetris game built with Next.js, featuring two game modes: Classic and Zetris.
+
+## Features
+
+- 🎮 Two game modes:
+  - Classic Mode: Traditional Tetris gameplay with all standard pieces
+  - Zetris Mode: A challenging variant where only Z-shaped pieces appear
+- 🎯 Score tracking and level progression
+- 🎨 Retro-styled UI with neon effects
+- 📱 Responsive design with mobile controls
+- ⌨️ Keyboard controls for desktop play
+
+## Controls
+
+### Desktop
+
+- Left Arrow: Move piece left
+- Right Arrow: Move piece right
+- Down Arrow: Move piece down
+- Up Arrow: Rotate piece
+- Space: Hard drop
+
+### Mobile
+
+- On-screen touch controls for movement, rotation, and hard drop
 
 ## Getting Started
 
@@ -16,9 +42,13 @@ bun dev
 
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Technologies Used
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+- Next.js 14
+- React
+- TypeScript
+- CSS Modules
+- Canvas API for game rendering
 
 ## Learn More
 
@@ -26,8 +56,6 @@ To learn more about Next.js, take a look at the following resources:
 
 - [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
 - [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
 
 ## Deploy on Vercel
 
